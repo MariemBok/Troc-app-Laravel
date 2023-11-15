@@ -7,8 +7,11 @@
 @section('content')
 
 <ul>
+
+
     @foreach ($articles as $article)
-        <li>{{$article['title']}}</li>
+        <li>{{$article->title}}, price: {{$article->price}} </li>
+        <br>
     @endforeach
 </ul>
 

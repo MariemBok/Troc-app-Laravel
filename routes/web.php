@@ -23,8 +23,14 @@ Route::get('hello-world', function () {
     return view('hello-world');
 });
 
-Route::get('/facture/{n}', function($n){
-    return view('facture')->with('number',$n);
-})->where('n','[0-9]+');
+Route::get('/facture/{n}', function ($n) {
+    return view('facture')->with('number', $n);
+})->where('n', '[0-9]+');
 
-Route::get('/articles', [PostController::class, 'index'] );
+Route::get('/articles', [PostController::class, 'index']);
+
+Route::get('/db', function(){
+    return view('db');
+} );
+
+Route::get('/articles/{id}', [PostController::class,'show']);
