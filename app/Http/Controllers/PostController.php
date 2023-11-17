@@ -17,9 +17,11 @@ class PostController extends Controller
 
     public function show($id){
 
-        if(Produit::find( $id ) === null){abort(404);}
+        $produit = Produit::find($id);
 
-        return view('article',['article' => Produit::find($id)]);
+        if($produit === null){abort(404);}
+
+        return view('article',['article' => $produit]);
 
     }
 
