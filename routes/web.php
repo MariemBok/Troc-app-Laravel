@@ -3,6 +3,9 @@
 use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PseudoController;
+use Illuminate\Http\Request;
+
 
 
 /*
@@ -26,6 +29,14 @@ Route::get('article', function(){
     return redirect()->route('articles');
 });
 
+
+Route::get('result', [PseudoController::class,'index']);
+
+Route::get('middleware', function(){
+    return view('middleware');
+    });
+
+
 Route::get('/{name?}', [HelloController::class, 'hello'])->where('name','[A-Za-z]+');
 
 
@@ -43,6 +54,5 @@ Route::get('/articles/{id}', [PostController::class,'show']);
 Route::get('/db', function(){
     return view('db');
 } );
-
 
 
