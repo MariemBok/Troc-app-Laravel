@@ -1,9 +1,9 @@
 @extends('template')
 
 @section('title')
-La Facture {{$number}}
+    foo
 @endsection
 
 @section('content')
-<h1>C'est la facture number {{$number}}</h1>
+    <h1>Here is foo</h1>
 @endsection

@@ -1,10 +1,9 @@
 @extends('template')
 
 @section('title')
-article {{$article->id}}
+    bar
 @endsection
 
 @section('content')
-<h1>{{$article->title}}</h1>
-<p> {{$article->content}} </p>
+    <h1>Here is bar</h1>
 @endsection
