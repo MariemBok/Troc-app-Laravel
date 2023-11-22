@@ -1,12 +1,7 @@
 <?php
 
-use App\Http\Controllers\HelloController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\PseudoController;
-use Illuminate\Http\Request;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -19,40 +14,18 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
-
-Route::get('/articles', [PostController::class, 'index'])->name('articles');
-
-Route::get('article', function(){
-    return redirect()->route('articles');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('result', [PseudoController::class,'index']);
-
-Route::get('middleware', function(){
-    return view('middleware');
-    });
-
-
-Route::get('/{name?}', [HelloController::class, 'hello'])->where('name','[A-Za-z]+');
-
-
-Route::get('hello-world', function () {
-    return view('hello-world');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/facture/{n}', function ($n) {
-    return view('facture')->with('number', $n);
-})->where('n', '[0-9]+');
-
-
-Route::get('/articles/{id}', [PostController::class,'show']);
-
-Route::get('/db', function(){
-    return view('db');
-} );
-
-
+require __DIR__.'/auth.php';
