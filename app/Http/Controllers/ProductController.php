@@ -42,15 +42,16 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'categories'));
     }
     
     public function update(Request $request, Product $product)
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('updateProduct', [
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => 'required|image',
+            // 'image' => 'required|image',
             'category_id' => 'required|exists:categories,id',
         ]);
 
