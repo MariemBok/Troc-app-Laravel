@@ -9,7 +9,7 @@ class EnsureUserIsAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->check() || !auth()->user()->isAdmin()) {
-            return redirect('/');
+            return redirect('/front-products');
         }
 
         return $next($request);
