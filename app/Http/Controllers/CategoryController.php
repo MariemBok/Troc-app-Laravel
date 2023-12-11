@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('createCategory',[
             'name' => 'required|max:255',
         ]);
 

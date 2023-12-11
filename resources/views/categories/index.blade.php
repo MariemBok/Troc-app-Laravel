@@ -1,31 +1,24 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Profile') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="container">
-    <h1>Categories</h1>
-    <a href="{{ route('categories.create') }}" class="btn btn-primary">Add New Category</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($categories as $category)
-            <tr>
-                <td>{{ $category->name }}</td>
-                <td>
-                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-default">Edit</a>
-                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <div class="flex justify-end">
+                <a href="{{ route('categories.create') }}" class="px-3 py-2 bg-emerald-500 hover:bg-emerald-600 rounded-md text-sm text-zinc-200">
+                    {{ __('Add new category') }}
+                </a>
+            </div>
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @include('categories.partials.table', ['categories' => $categories])
+                </div>
+            </div>
+
+            
+        </div>
+
+</x-app-layout>
