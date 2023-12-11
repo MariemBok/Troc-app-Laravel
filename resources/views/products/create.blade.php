@@ -33,6 +33,12 @@
                             <x-input-error :messages="$errors->createProduct->get('category_id')" class="mt-2" />
                         </div>
 
+                        <!-- <div>
+                            <x-input-label for="image" :value="__('Product image')" />
+                            <input id="image" name="image" type="file" accept="image/*" class="mt-1 block w-full" required />
+                            <x-input-error :messages="$errors->createProduct->get('image')" class="mt-2" />
+                        </div> -->
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </div>

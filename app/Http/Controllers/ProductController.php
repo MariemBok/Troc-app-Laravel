@@ -32,9 +32,14 @@ class ProductController extends Controller
         $validated = $request->validateWithBag('createProduct',[
             'title' => 'required|max:255',
             'description' => 'required',
-            // 'image' => 'required|image',
+            // 'image' => 'nullable|image',
             'category_id' => 'required|exists:categories,id',
         ]);
+
+        // if ($request->hasFile('image')) {
+        //     $path = $request->file('image')->store('images', 'public');
+        //     $validated['image'] = $path;
+        // }
 
         $product = Product::create($validated);
         return redirect()->route('products.index');
@@ -54,6 +59,11 @@ class ProductController extends Controller
             // 'image' => 'required|image',
             'category_id' => 'required|exists:categories,id',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public');
+            $validated['image'] = $imagePath;
+        }
 
         $product->update($validated);
         return redirect()->route('products.index');

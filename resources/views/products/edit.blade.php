@@ -25,13 +25,21 @@
                         </div>
                         <div>
                             <x-input-label for="category_id" :value="__('Product category')" />
-                            <select id="category_id" name="category_id" value="{{ $product->category_id }}" class="mt-1 block w-full">
+                            <select id="category_id" name="category_id" class="mt-1 block w-full">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->updateProduct->get('category_id')" class="mt-2" />
                         </div>
+
+                        <!-- <div>
+                            <x-input-label for="image" :value="__('Product image')" />
+                            <input id="image" name="image" type="file" class="mt-1 block w-full" />
+                            <x-input-error :messages="$errors->createProduct->get('image')" class="mt-2" />
+                        </div> -->
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
