@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -22,15 +23,16 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+        return view('products.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validated = $request->validateWithBag('createProduct',[
             'title' => 'required|max:255',
             'description' => 'required',
-            'image' => 'required|image',
+            // 'image' => 'required|image',
             'category_id' => 'required|exists:categories,id',
         ]);
 

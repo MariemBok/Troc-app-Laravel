@@ -19,6 +19,10 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getImageAttribute($value)
+    {
+        return $value ?: '/quest.jpg';
+    }
 
     use HasFactory;
 }
