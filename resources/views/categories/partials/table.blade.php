@@ -8,7 +8,7 @@
     <tbody>
         @foreach($categories as $category)
         <tr class="dark:bg-gray-700">
-            <td class="px-4 py-2">{{ $category->name }}</td>
+            <td class="px-4 py-2 capitalize">{{ $category->name }}</td>
             <td class="px-4 py-2">
                 <a href="{{ route('categories.edit', $category->id) }}" class="text-blue-500 dark:text-blue-400">Edit</a>
                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline">

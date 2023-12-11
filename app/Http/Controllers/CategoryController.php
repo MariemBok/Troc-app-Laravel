@@ -48,4 +48,10 @@ class CategoryController extends Controller
         $category->update($validated);
         return redirect()->route('categories.index');
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('categories.index');
+    }
 }
